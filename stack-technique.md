@@ -1,6 +1,6 @@
 Ce projet sera réalisé avec les technologies suivantes:
 
-Front: React (TyoeScript)
+Front: React (TypeScript)
 Back: Nextjs
 Back-office: Sanity
 Paiement: Stripe
