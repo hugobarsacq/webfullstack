@@ -4,6 +4,7 @@ export default {
   name: 'category',
   title: 'Category',
   type: 'document',
+  icon: BiCategory,
   fields: [
     {
       name: 'title',
