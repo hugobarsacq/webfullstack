@@ -1,11 +1,16 @@
-import type { GetServerSideProps, NextPage } from "next";
+import { Tab } from "@headlessui/react";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Header from "../components/Header";
 import Landing from "../components/Landing";
-import { Tab } from "@headlessui/react";
+import { fetchCategories } from "../utils/fetchCategories";
 
-const Home: NextPage = () => {
+interface Props {
+  categories: Category[];
+}
+
+const Home = ({ categories }: Props) => {
+  console.log(categories);
   return (
     <div className="">
       <Head>
@@ -58,10 +63,12 @@ const Home: NextPage = () => {
 export default Home;
 
 // Backend Code
-export const getServerSideProps: GetServerSideProps = async () => {
-  // const categories = await fetchCategories();
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const categories = await fetchCategories();
 
   return {
-    props: {},
+    props: {
+      categories,
+    },
   };
 };
