@@ -31,7 +31,7 @@ const Home = ({ categories }: Props) => {
 
           <Tab.Group>
             <Tab.List className="flex justify-center">
-              {/* {categories.map((category) => (
+              {categories.map((category) => (
                 <Tab
                   key={category._id}
                   id={category._id}
@@ -43,9 +43,9 @@ const Home = ({ categories }: Props) => {
                     }`
                   }
                 >
-                  iPhone
+                  {category.title}
                 </Tab>
-              ))} */}
+              ))}
             </Tab.List>
             <Tab.Panels className="mx-auto max-w-fit pt-10 pb-24 sm:px-4">
               {/* <Tab.Panel className="tabPanel">{showProducts(0)}</Tab.Panel>
