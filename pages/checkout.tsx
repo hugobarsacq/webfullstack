@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // import Stripe from "stripe";
 import Button from "../components/Button";
-// import CheckoutProduct from "../components/CheckoutProduct";
+import CheckoutProduct from "../components/CheckoutProduct";
 import { selectBasketItems, selectBasketTotal } from "../redux/basketSlice";
 // import { fetchPostJSON } from "../utils/api-helpers";
 // import getStripe from "../utils/get-stripejs";
@@ -15,16 +15,26 @@ import { selectBasketItems, selectBasketTotal } from "../redux/basketSlice";
 function Checkout() {
   const items = useSelector(selectBasketItems);
   const router = useRouter();
+  const [groupedItemsBasket, setGroupedItemsBasket] = useState({} as { [key: string]: Product[] });
+
+  useEffect(() => {
+    const groupedItems = items.reduce((results, item) => {
+      (results[item._id] = results[item._id] || []).push(item);
+      return results;
+    }, {} as { [key: string]: Product[] });
+
+    setGroupedItemsBasket(groupedItems);
+  }, [items]);
 
   return (
-    <div>
+    <div className="min-h-screen overflow-hidden bg-[#E7ECEE]">
       <Head>
         <title>Bag - Apple</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
-        <div>
+      <main className="mx-auto max-w-5xl pb-24">
+        <div className="px-5">
           <h1 className="my-4 text-3xl font-semibold lg:text-4xl">
             {items.length > 0 ? "Review your bag." : "Your bag is empty."}
           </h1>
@@ -36,8 +46,15 @@ function Checkout() {
               onClick={() => router.push("/")}
             />
           )}
-
         </div>
+
+        {items.length > 0 && (
+            <div className="mx-5 md:mx-8">
+              {Object.entries(groupedItemsBasket).map(([key, items]) => (
+                <CheckoutProduct key={key} items={items} id={key} />
+              ))}
+            </div>
+          )}
       </main>
     </div>
   )
