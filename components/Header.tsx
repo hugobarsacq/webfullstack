@@ -19,6 +19,7 @@ function Header() {
               src="https://rb.gy/vsvv2o"
               layout="fill"
               objectFit="contain"
+              alt="Logo"
             />
           </div>
         </Link>
