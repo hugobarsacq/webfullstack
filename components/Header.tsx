@@ -30,10 +30,10 @@ function Header() {
         </Link>
       </div>
       <div className="hidden flex-1 items-center justify-center space-x-8 md:flex">
-        <a className="headerLink">Product</a>
+        {/* <a className="headerLink">Product</a>
         <a className="headerLink">Explore</a>
         <a className="headerLink">Support</a>
-        <a className="headerLink">Business</a>
+        <a className="headerLink">Business</a> */}
       </div>
       <div className="flex items-center justify-center gap-x-4 md:w-1/5">
         <SearchIcon className="headerIcon" />
