@@ -5,6 +5,7 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 import { GetServerSideProps } from "next";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +23,7 @@ function Success({ products }: Props) {
   const router = useRouter();
   const {session_id} = router.query;
   const [mounted, setMounted] = useState(false);
+  const { data: session } = useSession() || null;
 
   useEffect(() => {
     setMounted(true);
@@ -72,7 +74,7 @@ function Success({ products }: Props) {
               </p>
               <h4 className="text-lg">
                 Thank you{" "}
-                {/* {session_id ? session_id.user?.name?.split(" ")[0] : "Guest"} */}
+                {session ? session.user?.name?.split(" ")[0] : "Guest"}
               </h4>
             </div>
           </div>
